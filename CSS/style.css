@@ -1,0 +1,11 @@
+/* *{
+    border: 1px solid red;
+} */
+
+.arrow-btn{
+    color: tomato;
+    border: 1px solid tomato ;
+    background-color: rgb(250, 245, 244);
+    border-radius: 50%;
+    padding: 10px;
+}
