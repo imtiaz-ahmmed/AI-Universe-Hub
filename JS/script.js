@@ -58,15 +58,7 @@ const displayAiInfo = (info, limit) => {
 
 
 
-const spinner = document.getElementById('loader');
-const loader = isLoading => {
-    if (isLoading) {
-        spinner.classList.remove('d-none')
-    }
-    else {
-        spinner.classList.add('d-none')
-    }
-}
+
 
 //*/
 
