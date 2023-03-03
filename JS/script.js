@@ -1,13 +1,24 @@
+// loader function
+const spinner = document.getElementById('loader');
+const loader = isLoading => {
+    if (isLoading) {
+        spinner.classList.remove('d-none')
+    }
+    else {
+        spinner.classList.add('d-none')
+    }
+}
+
+//Default View
 const loadAiInfo = async (limit) => {
-    //loader(true);
+    loader(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const response = await fetch(url);
     const data = await response.json();
     displayAiInfo(data.data.tools, limit);
-    //console.log(typeof data.data.tools[0].id);
 
 }
-///* 
+
 const displayAiInfo = (info, limit) => {
     const aiInfoContainer = document.getElementById('ai-info-container');
     aiInfoContainer.innerHTML = " ";
@@ -17,10 +28,7 @@ const displayAiInfo = (info, limit) => {
         seeMore.classList.remove('d-none');
     }
 
-
-
     info.forEach(aiInfo => {
-
         const aiDiv = document.createElement('div');
         aiDiv.classList.add('col');
         aiDiv.innerHTML = `
@@ -58,18 +66,81 @@ const displayAiInfo = (info, limit) => {
     loader(false);
 }
 
-// loader function
-const spinner = document.getElementById('loader');
-const loader = isLoading => {
-    if (isLoading) {
-        spinner.classList.remove('d-none')
-    }
-    else {
-        spinner.classList.add('d-none')
-    }
+//Sorted View
+const loadAiSortInfo = async (limit) => {
+    loader(true);
+    const url = `https://openapi.programming-hero.com/api/ai/tools`
+    const response = await fetch(url);
+    const data = await response.json();
+
+    displayAiSortInfo(data.data.tools, limit);
+
 }
 
-//*/
+const displayAiSortInfo = (info) => {
+    const aiInfoContainer = document.getElementById('ai-info-container');
+    aiInfoContainer.innerHTML = " ";
+    const cardsByDate = {};
+    info.forEach(aiInfo => {
+        if (!cardsByDate[aiInfo.published_in]) {
+            cardsByDate[aiInfo.published_in] = [aiInfo];
+        } else {
+            cardsByDate[aiInfo.published_in].push(aiInfo);
+        }
+    });
+
+    // Sort the dates in ascending order
+    const sortedDates = Object.keys(cardsByDate).sort((a, b) => {
+        const dateA = new Date(a);
+        const dateB = new Date(b);
+        return dateA.getTime() - dateB.getTime();
+    });
+
+    sortedDates.forEach(date => {
+        const cards = cardsByDate[date];
+        cards.forEach(card => {
+            const aiDiv = document.createElement('div');
+            aiDiv.classList.add('col');
+            aiDiv.innerHTML = `
+      <div class="card h-100 p-4">
+        <img src="${card.image}" class="card-img-top img-fluid h-100" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Features</h5>
+          <ol>
+            <li>${card.features[0]}</li>
+            <li>${card.features[1]}</li>
+            <li>${card.features[2] ? card.features[2] : "More features are coming..."}</li>
+          </ol>
+          <hr>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h5>${card.name}</h5>
+              <p> <i class="fa-regular fa-calendar-days me-2"></i> ${card.published_in}</p>
+            </div>
+            <div>
+              <i onClick="moreDetails('${card.id}')" id="more-details"class="fa-solid fa-arrow-right arrow-btn" data-bs-toggle="modal" data-bs-target="#detailsInfoModal"></i>      
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+            aiInfoContainer.appendChild(aiDiv);
+        });
+    });
+
+    loader(false);
+
+}
+
+
+//Sort Data Load
+document.getElementById('sort-btn').addEventListener('click', function () {
+    const aiInfoContainer = document.getElementById('ai-info-container');
+    aiInfoContainer.innerHTML = " ";
+    const seeMore = document.getElementById('see-more');
+    seeMore.classList.add('d-none');
+    loadAiSortInfo();
+})
 
 //Limited data load
 loadAiInfo(6);
@@ -81,7 +152,6 @@ document.getElementById('see-more').addEventListener('click', function () {
 });
 
 // More details button
-
 
 const moreInfo = (allData) => {
     const modalContainer = document.getElementById('modal-container');
