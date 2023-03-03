@@ -106,7 +106,31 @@ const moreInfo = (allData) => {
         
     </div>
 
-    
+    <div class="d-flex flex-column flex-lg-row mt-3">
+
+        <div> 
+            <h5> Features </h5>
+            <ul>
+                <li> ${allData.data.features[1].feature_name}</li>
+                <li> ${allData.data.features[2].feature_name}</li>
+                <li> ${allData.data.features[3].feature_name}</li>
+            </ul>
+        </div>
+
+        <div> 
+        <h5> Integrations </h5>
+        <ul>
+            <li> ${allData.data.integrations[0] ? allData.data.integrations[0] : "No Data Found"}</li>
+            <li> ${allData.data.integrations[1] ? allData.data.integrations[1] : "No Data Found"}</li>
+            <li> ${allData.data.integrations[2] ? allData.data.integrations[2] : "No Data Found"}</li>
+            
+        </ul>
+        </div>
+    </div>
+   
+    </div>
+
+   
     </div>`;
     modalContainer.appendChild(div);
 
