@@ -67,13 +67,13 @@ const displayAiInfo = (info, limit) => {
 }
 
 //Sorted View
-const loadAiSortInfo = async (limit) => {
+const loadAiSortInfo = async () => {
     loader(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const response = await fetch(url);
     const data = await response.json();
 
-    displayAiSortInfo(data.data.tools, limit);
+    displayAiSortInfo(data.data.tools);
 
 }
 
