@@ -200,7 +200,7 @@ const moreInfo = (allData) => {
    
     </div>
 
-    <div class="col-md-6  p-3 rounded ">
+    <div class="col-md-6  p-3 rounded-4 border border-secondary-subtle">
         <div class="h-50 rounded" style="background-image: url(${allData.data.image_link[0]}); background-size: cover; background-position: center;">
             <p class="accuracy text-center text-bg-danger w-50 rounded-3 p-2" 
             ${!allData.data.accuracy.score ? 'style="display:none;"' : ''}>
