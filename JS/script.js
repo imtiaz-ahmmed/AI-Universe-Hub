@@ -138,7 +138,10 @@ const moreInfo = (allData) => {
             </p>
         </div>
   
-        
+        <div class="mt-3 mb-5"> 
+            <h5> ${allData.data.input_output_examples[0].input} </h5>
+            <p> ${allData.data.input_output_examples[0].output ? allData.data.input_output_examples[0].output : "No! Not Yet! Take a break!!!"} </p>
+        </div>
     
     </div>`;
     modalContainer.appendChild(div);
