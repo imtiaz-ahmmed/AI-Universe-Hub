@@ -130,7 +130,16 @@ const moreInfo = (allData) => {
    
     </div>
 
-   
+    <div class="col-md-6 p-3 rounded ">
+        <div class="h-50 rounded" style="background-image: url(${allData.data.image_link[0]}); background-size: cover; background-position: center;">
+            <p class="text-center text-bg-danger w-50 ms-auto me-3 mt-3 rounded-3 p-2" 
+            ${!allData.data.accuracy.score ? 'style="display:none;"' : ''}>
+            ${allData.data.accuracy.score ? allData.data.accuracy.score * 100 + '%' : ''} accuracy
+            </p>
+        </div>
+  
+        
+    
     </div>`;
     modalContainer.appendChild(div);
 
