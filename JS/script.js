@@ -80,4 +80,43 @@ document.getElementById('see-more').addEventListener('click', function () {
     this.classList.add('d-none');
 });
 
+// More details button
 
+
+const moreInfo = (allData) => {
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.innerHTML = " ";
+    const div = document.createElement('div');
+    div.classList.add('row')
+    div.innerHTML = ` <div class="col-md-6 modal-info">
+    <h5>${allData.data.description}</h5>
+    <div class="d-flex flex-column flex-lg-row gap-2 ">
+        <div class="modal-price text-success">
+        <h6>${allData.data.pricing[0].price ? allData.data.pricing[0].price : "Free of Cost"}</h6>
+        <h6>${allData.data.pricing[0].plan}</h6>
+        </div>
+        <div  class="modal-price text-warning">
+        <h6>${allData.data.pricing[1].price ? allData.data.pricing[1].price : "Free of Cost"}</h6>
+        <h6>${allData.data.pricing[1].plan}</h6>
+        </div>
+        <div class="modal-price text-danger">
+        <h6>${allData.data.pricing[1].price ? allData.data.pricing[1].price : "Free of Cost"}</h6>
+        <h6>${allData.data.pricing[2].plan}</h6>
+        </div>
+        
+    </div>
+
+    
+    </div>`;
+    modalContainer.appendChild(div);
+
+}
+
+//
+const moreDetails = async (id) => {
+    const url = ` https://openapi.programming-hero.com/api/ai/tool/${id}`
+    const res = await fetch(url);
+    const allData = await res.json();
+    console.log(allData.data);
+    moreInfo(allData);
+}
