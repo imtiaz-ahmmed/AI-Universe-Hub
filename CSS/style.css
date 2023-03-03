@@ -1,11 +1,46 @@
-/* *{
+/*  *{
     border: 1px solid red;
-} */
+}  */
 
-.arrow-btn{
+.arrow-btn {
     color: tomato;
-    border: 1px solid tomato ;
+    border: 1px solid tomato;
     background-color: rgb(250, 245, 244);
     border-radius: 50%;
     padding: 10px;
+}
+
+.arrow-btn:hover {
+    color: rgb(242, 229, 227);
+    border: 1px solid tomato;
+    background-color: rgb(244, 101, 72);
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.custom-modal {
+    max-width: 800px;
+}
+
+.modal-price {
+    padding: 10px;
+    border-radius: 16px;
+    background-color: white;
+
+}
+
+.modal-info {
+    background: rgba(235, 87, 87, 0.05);
+    border: 1px solid #EB5757;
+    border-radius: 16px;
+    padding: 30px;
+}
+.modal-close-btn{
+    position: relative;
+    top: -20px;
+    left: 25px;
+    background-color: #f50404;
+    
+    
+
 }
