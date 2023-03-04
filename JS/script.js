@@ -152,6 +152,12 @@ document.getElementById('see-more').addEventListener('click', function () {
 });
 
 // More details button
+const moreDetails = async (id) => {
+    const url = ` https://openapi.programming-hero.com/api/ai/tool/${id}`
+    const res = await fetch(url);
+    const allData = await res.json();
+    moreInfo(allData);
+}
 
 const moreInfo = (allData) => {
     const modalContainer = document.getElementById('modal-container');
@@ -193,7 +199,6 @@ const moreInfo = (allData) => {
             <li> ${allData.data.integrations ? allData.data.integrations[0] : "No Data Found"}</li>
             <li> ${allData.data.integrations ? allData.data.integrations[1] : "No Data Found"}</li>
             <li> ${allData.data.integrations? allData.data.integrations[2] : "No Data Found"}</li>
-            
         </ul>
         </div>
     </div>
@@ -218,10 +223,4 @@ const moreInfo = (allData) => {
 
 }
 
-//
-const moreDetails = async (id) => {
-    const url = ` https://openapi.programming-hero.com/api/ai/tool/${id}`
-    const res = await fetch(url);
-    const allData = await res.json();
-    moreInfo(allData);
-}
+
