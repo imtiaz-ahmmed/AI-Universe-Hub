@@ -37,8 +37,8 @@ const displayAiInfo = (info, limit) => {
                 <div class="card-body">
                   <h5 class="card-title">Features</h5>
                   <ol>
-                    <li>${aiInfo.features[0]}</li>
-                    <li>${aiInfo.features[1]}</li>
+                    <li>${aiInfo.features[0] ? aiInfo.features[0] : "More features are coming..."}</li>
+                    <li>${aiInfo.features[1] ? aiInfo.features[1] : "More features are coming..."}</li>
                     <li>${aiInfo.features[2] ? aiInfo.features[2] : "More features are coming..."}</li>
                    
                  </ol>
@@ -162,16 +162,16 @@ const moreInfo = (allData) => {
     <h5>${allData.data.description}</h5>
     <div class="d-flex flex-column flex-lg-row gap-2 ">
         <div class="modal-price text-success">
-        <h6>${allData.data.pricing[0].price ? allData.data.pricing[0].price : "Free of Cost"}</h6>
-        <h6>${allData.data.pricing[0].plan}</h6>
+        <h6>${allData.data.pricing? allData.data.pricing[0].price : "Free of Cost/"}</h6>
+        <h6>${allData.data.pricing ? allData.data.pricing[0].plan : "Basic" }</h6>
         </div>
         <div  class="modal-price text-warning">
-        <h6>${allData.data.pricing[1].price ? allData.data.pricing[1].price : "Free of Cost"}</h6>
-        <h6>${allData.data.pricing[1].plan}</h6>
+        <h6>${allData.data.pricing ? allData.data.pricing[1].price : "Free of Cost/"}</h6>
+        <h6>${allData.data.pricing ? allData.data.pricing[1].plan : "Pro"}</h6>
         </div>
         <div class="modal-price text-danger">
-        <h6>${allData.data.pricing[1].price ? allData.data.pricing[1].price : "Free of Cost"}</h6>
-        <h6>${allData.data.pricing[2].plan}</h6>
+        <h6>${allData.data.pricing ? allData.data.pricing[2].price : "Free of Cost/"}</h6>
+        <h6>${allData.data.pricing ? allData.data.pricing[2].plan : "Enterprise"}</h6>
         </div>
         
     </div>
@@ -181,18 +181,18 @@ const moreInfo = (allData) => {
         <div> 
             <h5> Features </h5>
             <ul>
-                <li> ${allData.data.features[1].feature_name}</li>
-                <li> ${allData.data.features[2].feature_name}</li>
-                <li> ${allData.data.features[3].feature_name}</li>
+                <li> ${allData.data.features ? allData.data.features[1].feature_name : "No Feature Data Found"}</li>
+                <li> ${allData.data.features ? allData.data.features[2].feature_name : "No Feature Data Found"}</li>
+                <li> ${allData.data.features ? allData.data.features[3].feature_name : "No Feature Data Found"}</li>
             </ul>
         </div>
 
         <div> 
         <h5> Integrations </h5>
         <ul>
-            <li> ${allData.data.integrations[0] ? allData.data.integrations[0] : "No Data Found"}</li>
-            <li> ${allData.data.integrations[1] ? allData.data.integrations[1] : "No Data Found"}</li>
-            <li> ${allData.data.integrations[2] ? allData.data.integrations[2] : "No Data Found"}</li>
+            <li> ${allData.data.integrations ? allData.data.integrations[0] : "No Data Found"}</li>
+            <li> ${allData.data.integrations ? allData.data.integrations[1] : "No Data Found"}</li>
+            <li> ${allData.data.integrations? allData.data.integrations[2] : "No Data Found"}</li>
             
         </ul>
         </div>
@@ -209,8 +209,8 @@ const moreInfo = (allData) => {
         </div>
   
         <div class="mt-3 mb-5"> 
-            <h5> ${allData.data.input_output_examples[0].input} </h5>
-            <p> ${allData.data.input_output_examples[0].output ? allData.data.input_output_examples[0].output : "No! Not Yet! Take a break!!!"} </p>
+        <h5> ${allData.data.input_output_examples ? allData.data.input_output_examples[0].input : "Can You Give any Example?"} </h5>
+        <p> ${allData.data.input_output_examples ? allData.data.input_output_examples[0].output : "No! Not Yet! Take a break!!!"} </p>
         </div>
     
     </div>`;
@@ -223,6 +223,5 @@ const moreDetails = async (id) => {
     const url = ` https://openapi.programming-hero.com/api/ai/tool/${id}`
     const res = await fetch(url);
     const allData = await res.json();
-    console.log(allData.data);
     moreInfo(allData);
 }
